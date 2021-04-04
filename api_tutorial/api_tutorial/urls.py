@@ -21,6 +21,7 @@ from rest_framework import routers
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('snippets.urls')),
+    path('hero/', include('myapi.urls')),
 ]
 
 urlpatterns += [
