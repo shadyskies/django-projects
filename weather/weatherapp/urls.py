@@ -8,5 +8,5 @@ router.register(r'weather', WeatherViewSet)
 urlpatterns = [
     path("", home, name="home"),
     path("api_home/", include(router.urls)),
-    path("api_auth/", include('rest_framework.urls', namespace='weather-api-home')),
+    path("api_auth/", include('rest_framework.urls', namespace='api-auth')),
 ]

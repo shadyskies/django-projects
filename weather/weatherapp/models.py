@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 
 
 class WeatherModel(models.Model):
@@ -9,6 +10,6 @@ class WeatherModel(models.Model):
     humidity = models.FloatField(max_length=3)
     wind_dir = models.IntegerField()
     wind_speed = models.FloatField(max_length=5)
-
+    datetime_added = models.DateTimeField(default=timezone.now())
     # def __str__(self):
     #     return f"{self.__dict__}"
