@@ -13,7 +13,7 @@ def get_words():
 
     mycursor = mydb.cursor()
 
-    mycursor.execute("SELECT word FROM entries ORDER BY RAND() LIMIT 2")
+    mycursor.execute("SELECT word, definition FROM entries ORDER BY RAND() LIMIT 2")
 
     myresult = mycursor.fetchall()
     return myresult
