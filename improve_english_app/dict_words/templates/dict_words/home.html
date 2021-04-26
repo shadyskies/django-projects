@@ -1,5 +1,33 @@
-<h1>Homepage</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Search</title>
+</head>
+<body>
+    <h1><u>Words:</u></h1>
 
-{% for word in words %}
-    <p>{{word}}</p>
-{% endfor %}
+    {% for word in words %}
+        <p>{{word.0}}: {{word.1}}</p>
+    {% endfor %}
+    <a href="">Generate new words</a>
+
+
+    <p>Search for word<input type="text" id="search"></p>
+    <button id="submit-but" onclick="search_redirect()">Submit
+
+    <script>
+        var input = document.getElementById('search');
+<!--        if (event.keyCode === 13) {-->
+<!--           event.preventDefault();-->
+<!--           document.getElementById("myBtn").click();-->
+<!--          }-->
+<!--        });-->
+<!--        function search_redirect()-->
+        {
+            query = document.getElementById('search').value;
+            window.location.replace('/search/' + query);
+        }
+    </script>
+</body>
+</html>
