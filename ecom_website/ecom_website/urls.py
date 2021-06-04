@@ -20,6 +20,11 @@ from users import views as user_views
 
 from django.contrib.auth import views as auth_views
 
+#for serving files during development
+from django.conf import settings
+from django.conf.urls.static import static
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('fresh.urls')),
@@ -28,3 +33,7 @@ urlpatterns = [
     path('logout/', auth_views.LogoutView.as_view(template_name='users/logout.html'), name='logout'),
     # path('profile/', user_views.profile, name='profile'),
 ]
+
+urlpatterns += [
+    # ... the rest of your URLconf goes here ...
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
