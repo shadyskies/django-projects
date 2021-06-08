@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     #OWN APPS:
     'fresh.apps.FreshConfig',
     'users.apps.UsersConfig',
+    'orders.apps.OrdersConfig',
     'crispy_forms',
 ]
 
