@@ -13,38 +13,32 @@ def add_to_cart(request, pk):
 
     # TODO: use signals to autocreate cart obj on user creation
     # TODO: check if available
-    # checking if cart_obj exists
-    if Cart.objects.filter(user=request.user).exists():
-        # if orderitem exists
-        cart_obj = Cart.objects.get(user=request.user)
+
+    cart_obj = Cart.objects.get(user=request.user)
+    # if orderitem exists
+    if OrderItem.objects.filter(cart=cart_obj, product=prod).exists():
         order_item_obj = OrderItem.objects.get(cart=cart_obj, product=prod)
-        if OrderItem.objects.filter(product=prod).exists():
-            order_item_obj.quantity += 1
+        order_item_obj.quantity += 1
+        order_item_obj.price += prod.price
 
-        else:
-            order_item_obj = OrderItem(product=prod, cart=cart_obj, price=prod.price)
-
-        cart_obj.subtotal += prod.price
-        cart_obj.updated = datetime.now()
-        order_item_obj.save()
-        cart_obj.save()
-
+    #if orderitem doesnt exist
     else:
-        # create Cart obj
-        cart_obj = Cart.objects.create(user=request.user)
-        oi = OrderItem(product=prod, cart=cart_obj, price=prod.price)
-        oi.save()
-        cart_obj.subtotal = prod.price
-        cart_obj.save()
+        order_item_obj = OrderItem(product=prod, cart=cart_obj, price=prod.price)
+
+    cart_obj.subtotal += prod.price
+    cart_obj.updated = datetime.now()
+    order_item_obj.save()
+    cart_obj.save()
+
     return redirect('/shop/')
 
 
+@login_required
 def remove_from_cart(request, pk):
     prod = get_object_or_404(Products, p_id=pk)
     cart_obj = get_object_or_404(Cart, user=request.user)
-    order_item_obj = OrderItem(cart=cart_obj)
-
-    order_item_obj.quantity -= 1
-    order_item_obj.price = order_item_obj.get_cost()
-    cart_obj.subtotal -= prod.price
-    cart_obj.updated = datetime.now()
+    order_item_obj = OrderItem.objects.filter(cart=cart_obj, product=prod)
+    cart_obj.subtotal -= order_item_obj[0].price
+    order_item_obj.delete()
+    cart_obj.save()
+    return redirect('/cart/')

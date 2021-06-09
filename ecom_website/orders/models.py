@@ -42,7 +42,7 @@ class OrderItem(models.Model):
 
 # cart model working through intermediary of OrderItem model
 class Cart(models.Model):
-    user = models.ForeignKey(User, null=True, blank=True, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, null=True, blank=True, on_delete=models.CASCADE)
     products = models.ManyToManyField(Products, through=OrderItem, blank=True)
     subtotal = models.DecimalField(default=0.00, max_digits=100, decimal_places=2)
     total = models.DecimalField(default=0.00, max_digits=100, decimal_places=2)
@@ -55,3 +55,6 @@ class Cart(models.Model):
     def get_total_cost(self):
         return self.total
 
+    # number of items in cart
+    def get_num_items(self):
+        return len(self.products.all())

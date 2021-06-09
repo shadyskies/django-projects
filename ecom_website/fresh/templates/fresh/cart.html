@@ -52,12 +52,12 @@
                                     <td class="price-pr">
                                         <p>{{i.product.price}}</p>
                                     </td>
-                                    <td class="quantity-box"><input type="number" size="4" value="1" min="0" step="1" class="c-input-text qty text"></td>
+                                    <td class="quantity-box"><input type="number" size="4" value={{i.quantity}} min="0" step="1" class="c-input-text qty text"></td>
                                     <td class="total-pr">
                                         <p>${{i.price}}</p>
                                     </td>
                                     <td class="remove-pr">
-                                        <a href="#">
+                                        <a href="{% url 'remove_from_cart' i.product.p_id %}">
 									<i class="fas fa-times"></i>
 								</a>
                                     </td>
