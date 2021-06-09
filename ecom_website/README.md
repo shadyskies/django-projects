@@ -48,9 +48,9 @@ python3 manage.py runserver
 ```
 
 ## TODO<a name = 'todo'>
-- implement base template for website
-- models for form submission
-- user access to profile route
+- ~~implement base template for website~~
+- ~~models for products~~
+- ~~user access and profile route~~
 - cost and transaction handling
 - API (GET)
 - deploy

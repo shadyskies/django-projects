@@ -17,7 +17,7 @@ def add_to_cart(request, pk):
     if Cart.objects.filter(user=request.user).exists():
         # if orderitem exists
         cart_obj = Cart.objects.get(user=request.user)
-        order_item_obj = OrderItem.objects.get(cart=cart_obj)
+        order_item_obj = OrderItem.objects.get(cart=cart_obj, product=prod)
         if OrderItem.objects.filter(product=prod).exists():
             order_item_obj.quantity += 1
 

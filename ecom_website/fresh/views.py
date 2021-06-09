@@ -1,31 +1,23 @@
 from django.shortcuts import render
 from .models import Products, Insta_images, Blog_model
-from django.template import loader, RequestContext
+from django.template import RequestContext
 from orders.models import OrderItem, Order, Cart
-
-
-#TODO: look into context processing
-# using context processor to handle same contexts
-def insta_images_context(request):
-    insta_images = Insta_images.objects.all()
-    return{
-        'insta_images': insta_images
-    }
+from django.contrib.auth.decorators import login_required
 
 
 # TODO: implement rating
 def index(request):
-    insta_images = Insta_images.objects.all()
     blogs = Blog_model.objects.all()
-    products = Products.objects.all()[:4]
-    context = {}
-    return render(request, 'fresh/index.html', {"insta_images": insta_images, 'blogs': blogs, "products": products})
+    return render(request, 'fresh/index.html',{"blogs":blogs})
 
 
+@login_required
 def shop(request):
+    cart = Cart.objects.get(user=request.user)
+    cart_item = OrderItem.objects.filter(cart=cart)
     insta_images = Insta_images.objects.all()
     products = Products.objects.all()
-    return render(request, 'fresh/shop.html', {"insta_images": insta_images, "products": products})
+    return render(request, 'fresh/shop.html', {"insta_images": insta_images, "products": products, "cart_item": cart_item})
 
 
 def cart(request):
@@ -55,12 +47,10 @@ def wishlist(request):
 
 
 def base(request):
-    insta_images = Insta_images.objects.all()
-    for i in insta_images:
-        print(i.image)
-        print(i.href)
+    cart = Cart.objects.get(user=request.user)
+    cart_item = OrderItem.objects.filter(cart=cart)
     context = {
-        'insta_images': insta_images
+        'insta_images': insta_images,
+        'cart_item': cart_item
     }
-    print(insta_images)
     return render(request, 'fresh/base.html', context=context)
