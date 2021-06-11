@@ -11,7 +11,6 @@ from datetime import datetime
 def add_to_cart(request, pk):
     prod = get_object_or_404(Products, pk=pk)
 
-    # TODO: use signals to autocreate cart obj on user creation
     # TODO: check if available
 
     cart_obj = Cart.objects.get(user=request.user)

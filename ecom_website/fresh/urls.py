@@ -1,5 +1,11 @@
 from django.urls import path, include
-from .views import index, shop, cart, checkout, contact, gallery, wishlist, base, shop_detail
+from .views import index, shop, cart, about, checkout, contact, gallery, wishlist, base, shop_detail, UserViewSet, ProductViewSet
+# rest_framework
+from rest_framework import routers
+
+router = routers.DefaultRouter()
+router.register(r'users', UserViewSet)
+router.register(r'products', ProductViewSet)
 
 
 urlpatterns = [
@@ -11,4 +17,7 @@ urlpatterns = [
     path('gallery/', gallery, name='gallery'),
     path('wishlist/', wishlist, name='wishlist'),
     path('base/', base, name='base'),
+    path('about/', about, name='about'),
+    path('api-auth', include('rest_framework.urls', namespace='rest_framework')),
+    path('api/', include(router.urls)),
 ]

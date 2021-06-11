@@ -21,6 +21,9 @@ class Products(models.Model):
             img.thumbnail(output_size)
             img.save(self.image.path)
 
+    def  __str__(self):
+        return f"Product: {self.name} id:[{self.p_id}]"
+
 
 class Insta_images(models.Model):
     image = models.ImageField(upload_to='images/')

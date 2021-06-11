@@ -3,6 +3,11 @@ from .models import Products, Insta_images, Blog_model
 from django.template import RequestContext
 from orders.models import OrderItem, Order, Cart
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
+
+# rest_framework
+from .serializers import UserSerializer, ProductSerializer
+from rest_framework import viewsets, permissions
 
 
 # TODO: implement rating
@@ -38,6 +43,10 @@ def cart(request):
         "cart_item": order_item
     }
     return render(request, 'fresh/cart.html', context=context)
+
+
+def about(request):
+    return render(request, "fresh/about.html", {})
 
 
 def shop_detail(request, pk):
@@ -80,3 +89,16 @@ def base(request):
         'cart_item': cart_item
     }
     return render(request, 'fresh/base.html', context=context)
+
+
+# viewsets
+class ProductViewSet(viewsets.ModelViewSet):
+    queryset = Products.objects.all()
+    serializer_class = ProductSerializer
+    permission_classes = [permissions.IsAdminUser]
+
+
+class UserViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    permission_classes = [permissions.IsAdminUser]

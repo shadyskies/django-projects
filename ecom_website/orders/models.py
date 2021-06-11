@@ -49,8 +49,8 @@ class Cart(models.Model):
     updated = models.DateTimeField(auto_now=True)
     timestamp = models.DateTimeField(auto_now_add=True)
 
-    def __unicode__(self):
-        return '%s' % self.user
+    def __str__(self):
+        return f"cart of user: {self.user}"
 
     def get_total_cost(self):
         return self.total
