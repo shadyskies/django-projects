@@ -5,6 +5,7 @@
 - [About](#about)
 - [Getting Started](#getting_started)
 - [Usage](#usage)
+- [Screenshots](#ss)
 - [#TODO](#todo)
 
 ## About <a name = "about"></a>
@@ -46,11 +47,18 @@ End with an example of getting some data out of the system or using it for a lit
 cd ecom_website
 python3 manage.py runserver
 ```
+## Screenshots <a name = "ss"></a>
+<img src="screens/1.png">
+<img src="screens/2.png">
+<img src="screens/3.png">
+<img src="screens/4.png">
+<img src="screens/5.png">
+
 
 ## TODO<a name = 'todo'>
 - ~~implement base template for website~~
 - ~~models for products~~
 - ~~user access and profile route~~
-- cost and transaction handling
-- API (GET)
+- ~~cost and transaction handling~~
+- ~~API (GET)~~
 - deploy
