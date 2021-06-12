@@ -16,31 +16,28 @@ Write about 1-2 paragraphs describing the purpose of your project.
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See [deployment](#deployment) for notes on how to deploy the project on a live system.
 
-### Prerequisites
+### Prerequisites:
 
-What things you need to install the software and how to install them.
-
-```
-Give examples
-```
-
-### Installing
-
-A step by step series of examples that tell you how to get a development env running.
-
-Say what the step will be
+Clone the repository: 
 
 ```
-Give the example
+git clone https://github.com/shadyskies/django-projects.git
 ```
 
-And repeat
+### Installing:
+
+Install the required python modules
 
 ```
-until finished
+pip3 install requirements.txt
+```
+Apply the intial migrations and then start the server.
+
+```
+python3 manage.py migrate
+python3 manage.py runserver
 ```
 
-End with an example of getting some data out of the system or using it for a little demo.
 
 ## Usage <a name = "usage"></a>
 ```
