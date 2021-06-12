@@ -1,20 +1,15 @@
-# my-app
+# ECommerce Website
 
 ## Table of Contents
 
 - [About](#about)
-- [Getting Started](#getting_started)
-- [Usage](#usage)
+- [Getting Started](#getting_started)- [Usage](#usage)
 - [Screenshots](#ss)
 - [#TODO](#todo)
 
 ## About <a name = "about"></a>
+Designed backend for an ecommerce website with functionalities such as CRUD and appropriate models for staff users. Also designed API for data retrieval. 
 
-Write about 1-2 paragraphs describing the purpose of your project.
-
-## Getting Started <a name = "getting_started"></a>
-
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See [deployment](#deployment) for notes on how to deploy the project on a live system.
 
 ### Prerequisites:
 
